@@ -1,4 +1,4 @@
-#Reportes QWeb
+# Reportes QWeb
 
 Los informes se escriben en HTML / QWeb, como todas las vistas regulares en Odoo. 
 Puede usar las herramientas habituales de control de flujo QWeb.
@@ -10,7 +10,7 @@ Si lo desea, también puede especificar un formato de papel específico para est
 Finalmente, si necesita acceder a más de su modelo, puede definir una clase de Informes 
 personalizados que le da acceso a más modelos y registros en la plantilla.
 
-##Reporte
+## Reporte
 
 
 Cada informe debe ser declarado por una acción de informe.
