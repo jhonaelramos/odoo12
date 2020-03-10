@@ -61,3 +61,42 @@ Identificación externa del formato de papel que desea utilizar (por defecto es 
         ('INV'+(object.number or '').replace('/','')+'.pdf')"
 />
 ```
+
+## Plantilla de Reporte
+
+Plantilla mínima viable
+
+Una plantilla mínima se vería así:
+
+```
+<template id="report_invoice">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Report title</h2>
+                    <p>This object's name is <span t-field="o.name"/></p>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+```
+llamando **external_layout** agregará el encabezado y pie de página predeterminados en su informe. El cuerpo del PDF será el contenido dentro del **<div class="page">**. La plantilla es **id** debe ser el nombre especificado en la declaración del informe; por ejemplo **account.report_invoice** para el informe anterior. Como se trata de una plantilla QWeb, puede acceder a todos los campos de **docs** objetos recibidos por la plantilla.
+    
+Hay algunas variables específicas accesibles en los informes, principalmente:
+**docs**
+registros para el informe actual
+**doc_ids**
+lista de identificadores para los registros de docs
+**doc_model**
+modelo para los registros de docs
+**time**
+una referencia al tiempo de la biblioteca estándar de Python
+**user**
+**res.user** Registro para la usuario que imprime el informe
+**res_company**
+registro de la empresa del usuario actual
+
+Si desea acceder a otros registros / modelos en la plantilla, necesitará un informe personalizado.
+
