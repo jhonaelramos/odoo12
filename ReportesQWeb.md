@@ -19,3 +19,45 @@ Para simplificar, un elemento de acceso directo <report>
 está disponible para definir un informe, 
 en lugar de tener que configurar la acción y sus alrededores manualmente. 
 Ese <report> puede tomar los siguientes atributos:
+
+**id**
+la identificación externa del registro generado
+
+**name** (obligatorio)
+solo es útil como mnemónico / descripción del informe cuando se busca uno en una lista de algún tipo.
+
+**model** (obligatorio)
+el modelo sobre el que tratará su informe
+
+**report_type** (obligatorio)
+qweb-pdf para informes en PDF o qweb-html para HTML
+
+**report_name**
+el nombre de su informe (que será el nombre de la salida PDF)
+
+**groups**
+Many2many campo para los grupos autorizados para ver / usar el informe actual
+
+**attachment_use**
+si se establece en True, el informe se almacenará como un archivo adjunto del registro utilizando el nombre generado por la expresión del archivo adjunto; puede usar esto si necesita que su informe se genere solo una vez (por razones legales, por ejemplo)
+
+**attachment**
+expresión de python que define el nombre del informe; el registro es accesible como el objeto variable
+
+**paperformat**
+Identificación externa del formato de papel que desea utilizar (por defecto es el formato de papel de la empresa si no se especifica)
+
+**Ejemplo**
+```
+<report
+    id="account_invoices"
+    model="account.invoice"
+    string="Invoices"
+    report_type="qweb-pdf"
+    name="account.report_invoice"
+    file="account.report_invoice"
+    attachment_use="True"
+    attachment="(object.state in ('open','paid')) and
+        ('INV'+(object.number or '').replace('/','')+'.pdf')"
+/>
+		```
