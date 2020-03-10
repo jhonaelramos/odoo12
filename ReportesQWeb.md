@@ -60,4 +60,4 @@ Identificación externa del formato de papel que desea utilizar (por defecto es 
     attachment="(object.state in ('open','paid')) and
         ('INV'+(object.number or '').replace('/','')+'.pdf')"
 />
-		```
+```
